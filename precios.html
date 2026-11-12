@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Precios — Pasión 90</title>
+  <meta name="description" content="Precios detallados de poleras de fútbol, personalización, envíos y venta mayorista. Valores en CLP con IVA incluido." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink: '#0A0A0B',
+            volt: '#D4FF3D',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    ::selection { background: #D4FF3D; color: #0A0A0B; }
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    .fade-up { animation: fadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body class="bg-white font-sans text-ink antialiased">
+
+  <!-- Barra de anuncio -->
+  <div class="bg-ink text-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.18em] sm:px-6 lg:px-8">
+      <p class="flex items-center gap-2">
+        <span class="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-volt"></span>
+        Envío gratis en compras sobre $50.000
+      </p>
+      <p class="hidden text-white/60 sm:block">Precios en CLP · IVA incluido</p>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header id="navbar" class="sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-xl transition-shadow">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="index.html" class="flex items-center gap-2.5" aria-label="Pasión 90, inicio">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-ink">
+          <svg viewBox="0 0 24 24" class="h-6 w-6 text-volt" fill="currentColor" aria-hidden="true">
+            <path d="M13.5 2 4 14h6l-1.5 8L19 10h-6l.5-8Z"/>
+          </svg>
+        </span>
+        <span class="font-display text-2xl leading-none tracking-wide">PASIÓN<span class="text-neutral-400">90</span></span>
+      </a>
+
+      <ul class="hidden items-center gap-5 text-sm font-semibold text-neutral-600 lg:flex xl:gap-8">
+        <li><a href="index.html" class="transition hover:text-ink">Inicio</a></li>
+        <li><a href="index.html#productos" class="transition hover:text-ink">Poleras</a></li>
+        <li><a href="servicios.html" class="transition hover:text-ink">Servicios</a></li>
+        <li><a href="precios.html" aria-current="page" class="text-ink underline decoration-volt decoration-[3px] underline-offset-8">Precios</a></li>
+        <li><a href="index.html#retro" class="transition hover:text-ink">Retro</a></li>
+        <li><a href="#contacto" class="transition hover:text-ink">Contacto</a></li>
+      </ul>
+
+      <div class="flex items-center gap-2">
+        <a href="index.html#productos" class="hidden h-10 items-center gap-2 rounded-full bg-ink px-5 text-sm font-semibold text-white transition hover:bg-neutral-800 sm:flex">
+          Comprar
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <button type="button" id="menuBtn" class="grid h-10 w-10 place-items-center rounded-full border border-black/10 lg:hidden" aria-label="Abrir menú" aria-expanded="false">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="hidden border-t border-black/5 bg-white lg:hidden">
+      <ul class="flex flex-col gap-1 px-4 py-4 text-sm font-semibold text-neutral-700">
+        <li><a href="index.html" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Inicio</a></li>
+        <li><a href="index.html#productos" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Poleras</a></li>
+        <li><a href="servicios.html" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Servicios</a></li>
+        <li><a href="precios.html" class="block rounded-lg bg-neutral-100 px-3 py-2">Precios</a></li>
+        <li><a href="index.html#retro" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Retro</a></li>
+        <li><a href="#contacto" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="relative overflow-hidden bg-ink text-white">
+      <div class="hero-grid absolute inset-0"></div>
+      <div class="pointer-events-none absolute -right-32 top-0 h-[480px] w-[480px] rounded-full bg-volt/20 blur-[120px]"></div>
+      <div class="pointer-events-none absolute -bottom-40 left-1/4 h-[380px] w-[380px] rounded-full bg-volt/10 blur-[100px]"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <nav aria-label="Migas de pan" class="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">
+          <a href="index.html" class="transition hover:text-volt">Inicio</a>
+          <span>/</span>
+          <span class="text-volt">Precios</span>
+        </nav>
+
+        <div class="mt-8 grid items-end gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <div class="fade-up">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-volt backdrop-blur">
+              <span class="h-1.5 w-1.5 rounded-full bg-volt"></span>
+              Valores en CLP · IVA incluido
+            </span>
+            <h1 class="mt-6 font-display text-6xl leading-[0.92] tracking-wide sm:text-7xl lg:text-8xl">
+              PRECIOS<br /><span class="text-volt">SIN SORPRESAS.</span>
+            </h1>
+            <p class="mt-6 max-w-lg text-base leading-relaxed text-white/60">
+              Todo lo que cobramos, detallado y a la vista. Elige tu polera, súmale personalización y calcula tu envío sin letra chica.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#tarifas" class="group inline-flex items-center gap-2 rounded-full bg-volt px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-ink transition hover:bg-white">
+                Ver tarifas
+                <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="#tarifas" data-open-tab="mayorista" class="inline-flex items-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition hover:border-volt hover:text-volt">
+                Precios mayoristas
+              </a>
+            </div>
+          </div>
+
+          <dl class="grid grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+              <dt class="text-[10px] uppercase tracking-[0.2em] text-white/40">Poleras desde</dt>
+              <dd class="mt-1 font-display text-3xl tracking-wide sm:text-4xl">$27.990</dd>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+              <dt class="text-[10px] uppercase tracking-[0.2em] text-white/40">Personalización</dt>
+              <dd class="mt-1 font-display text-3xl tracking-wide sm:text-4xl">$4.990</dd>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+              <dt class="text-[10px] uppercase tracking-[0.2em] text-white/40">Envío desde</dt>
+              <dd class="mt-1 font-display text-3xl tracking-wide sm:text-4xl">$2.990</dd>
+            </div>
+            <div class="rounded-2xl border border-volt/30 bg-volt/10 p-5 backdrop-blur">
+              <dt class="text-[10px] uppercase tracking-[0.2em] text-volt/70">Envío gratis</dt>
+              <dd class="mt-1 font-display text-3xl tracking-wide text-volt sm:text-4xl">+$50.000</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tarifas -->
+    <section id="tarifas" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">Tarifas</p>
+          <h2 class="mt-2 font-display text-5xl tracking-wide sm:text-6xl">LISTA DE PRECIOS</h2>
+          <p class="mt-3 max-w-xl text-sm leading-relaxed text-neutral-500">
+            Selecciona el tipo de compra para ver los valores que aplican. Los precios ya incluyen IVA.
+          </p>
+        </div>
+
+        <!-- Toggle minorista / mayorista -->
+        <div class="inline-flex rounded-full border border-black/10 bg-white p-1" role="tablist" aria-label="Tipo de precio">
+          <button type="button" id="tabMinorista" role="tab" aria-selected="true" aria-controls="panelMinorista" data-price-tab="minorista" class="rounded-full bg-ink px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition">
+            Minorista
+          </button>
+          <button type="button" id="tabMayorista" role="tab" aria-selected="false" aria-controls="panelMayorista" data-price-tab="mayorista" class="rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-neutral-500 transition hover:text-ink">
+            Mayorista
+          </button>
+        </div>
+      </div>
+
+      <!-- Panel minorista -->
+      <div id="panelMinorista" role="tabpanel" aria-labelledby="tabMinorista" data-price-panel="minorista" class="mt-8">
+        <div class="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[640px] text-left text-sm">
+              <caption class="sr-only">Precios minoristas de poleras por línea</caption>
+              <thead>
+                <tr class="border-b border-black/5 bg-neutral-50 text-[10px] uppercase tracking-[0.18em] text-neutral-400">
+                  <th scope="col" class="px-6 py-4 font-semibold">Línea</th>
+                  <th scope="col" class="px-6 py-4 font-semibold">Qué incluye</th>
+                  <th scope="col" class="px-6 py-4 font-semibold">Precio normal</th>
+                  <th scope="col" class="px-6 py-4 text-right font-semibold">Precio actual</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-black/5">
+                <tr class="transition hover:bg-neutral-50/70">
+                  <th scope="row" class="px-6 py-4 font-semibold">Nacionales</th>
+                  <td class="px-6 py-4 text-neutral-500">Clubes de la Liga Nacional · S a XXL</td>
+                  <td class="px-6 py-4 text-neutral-400 line-through">$49.990</td>
+                  <td class="px-6 py-4 text-right text-base font-extrabold">$34.990</td>
+                </tr>
+                <tr class="transition hover:bg-neutral-50/70">
+                  <th scope="row" class="px-6 py-4 font-semibold">Internacionales</th>
+                  <td class="px-6 py-4 text-neutral-500">Europa y grandes ligas · S a XXL</td>
+                  <td class="px-6 py-4 text-neutral-400 line-through">$54.990</td>
+                  <td class="px-6 py-4 text-right text-base font-extrabold">$39.990</td>
+                </tr>
+                <tr class="transition hover:bg-neutral-50/70">
+                  <th scope="row" class="px-6 py-4 font-semibold">Selecciones</th>
+                  <td class="px-6 py-4 text-neutral-500">Camisetas de selección · S a XXL</td>
+                  <td class="px-6 py-4 text-neutral-400 line-through">$57.990</td>
+                  <td class="px-6 py-4 text-right text-base font-extrabold">$42.990</td>
+                </tr>
+                <tr class="transition hover:bg-neutral-50/70">
+                  <th scope="row" class="px-6 py-4 font-semibold">Retro</th>
+                  <td class="px-6 py-4 text-neutral-500">Clásicos 90' y 2000 · S a XL</td>
+                  <td class="px-6 py-4 text-neutral-400 line-through">$47.990</td>
+                  <td class="px-6 py-4 text-right text-base font-extrabold">$37.990</td>
+                </tr>
+                <tr class="transition hover:bg-neutral-50/70">
+                  <th scope="row" class="px-6 py-4 font-semibold">Niños</th>
+                  <td class="px-6 py-4 text-neutral-500">Tallas 4, 6, 8, 10 y 12 años</td>
+                  <td class="px-6 py-4 text-neutral-400 line-through">$34.990</td>
+                  <td class="px-6 py-4 text-right text-base font-extrabold">$27.990</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-black/5 bg-neutral-50/70 px-6 py-4 text-xs text-neutral-500">
+            <span class="inline-flex items-center gap-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-volt"></span>
+              Precios incluyen IVA
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-volt"></span>
+              Hasta 3 cuotas sin interés
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-volt"></span>
+              30 días para cambios
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel mayorista -->
+      <div id="panelMayorista" role="tabpanel" aria-labelledby="tabMayorista" data-price-panel="mayorista" class="mt-8 hidden">
+        <div class="grid gap-4 lg:grid-cols-[1.4fr_0.6fr]">
+          <div id="mayorista" class="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[560px] text-left text-sm">
+                <caption class="sr-only">Descuentos por volumen para compras mayoristas</caption>
+                <thead>
+                  <tr class="border-b border-black/5 bg-neutral-50 text-[10px] uppercase tracking-[0.18em] text-neutral-400">
+                    <th scope="col" class="px-6 py-4 font-semibold">Cantidad</th>
+                    <th scope="col" class="px-6 py-4 font-semibold">Descuento</th>
+                    <th scope="col" class="px-6 py-4 font-semibold">Internacional (ref.)</th>
+                    <th scope="col" class="px-6 py-4 text-right font-semibold">Por unidad</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-black/5">
+                  <tr class="transition hover:bg-neutral-50/70">
+                    <th scope="row" class="px-6 py-4 font-semibold">10 – 24 unidades</th>
+                    <td class="px-6 py-4"><span class="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-bold">15%</span></td>
+                    <td class="px-6 py-4 text-neutral-400 line-through">$39.990</td>
+                    <td class="px-6 py-4 text-right text-base font-extrabold">$33.990</td>
+                  </tr>
+                  <tr class="transition hover:bg-neutral-50/70">
+                    <th scope="row" class="px-6 py-4 font-semibold">25 – 49 unidades</th>
+                    <td class="px-6 py-4"><span class="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-bold">20%</span></td>
+                    <td class="px-6 py-4 text-neutral-400 line-through">$39.990</td>
+                    <td class="px-6 py-4 text-right text-base font-extrabold">$31.990</td>
+                  </tr>
+                  <tr class="transition hover:bg-neutral-50/70">
+                    <th scope="row" class="px-6 py-4 font-semibold">50 – 99 unidades</th>
+                    <td class="px-6 py-4"><span class="rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-bold">25%</span></td>
+                    <td class="px-6 py-4 text-neutral-400 line-through">$39.990</td>
+                    <td class="px-6 py-4 text-right text-base font-extrabold">$29.990</td>
+                  </tr>
+                  <tr class="bg-ink text-white">
+                    <th scope="row" class="px-6 py-4 font-semibold">
+                      100+ unidades
+                      <span class="ml-2 rounded-full bg-volt px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink">Mejor precio</span>
+                    </th>
+                    <td class="px-6 py-4"><span class="rounded-full bg-volt px-2.5 py-1 text-xs font-bold text-ink">30%</span></td>
+                    <td class="px-6 py-4 text-white/40 line-through">$39.990</td>
+                    <td class="px-6 py-4 text-right text-base font-extrabold text-volt">$27.990</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="border-t border-black/5 bg-neutral-50/70 px-6 py-4 text-xs text-neutral-500">
+              * Valores de referencia sobre línea internacional. El descuento se aplica al precio de lista de cada línea.
+            </p>
+          </div>
+
+          <aside class="rounded-3xl bg-ink p-6 text-white">
+            <h3 class="font-display text-2xl tracking-wide">Condiciones mayoristas</h3>
+            <ul class="mt-4 space-y-3 text-sm text-white/60">
+              <li class="flex items-start gap-2.5">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-volt text-ink">
+                  <svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                Mínimo 10 unidades por pedido
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-volt text-ink">
+                  <svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                Se pueden combinar modelos y tallas
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-volt text-ink">
+                  <svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                50% de abono para iniciar producción
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-volt text-ink">
+                  <svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                Entrega en 7 a 10 días hábiles
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-volt text-ink">
+                  <svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                Personalización gratis desde 50 unidades
+              </li>
+            </ul>
+            <a href="#contacto" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-volt px-5 py-3 text-xs font-bold uppercase tracking-wider text-ink transition hover:bg-white">
+              Pedir cotización
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personalización y extras -->
+    <section class="border-y border-black/5 bg-neutral-50/70">
+      <div class="mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
+        <!-- Personalización -->
+        <div>
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">Adicionales</p>
+              <h2 class="mt-2 font-display text-4xl tracking-wide sm:text-5xl">PERSONALIZACIÓN</h2>
+            </div>
+            <a href="servicios.html#personalizacion" class="text-xs font-semibold text-neutral-500 underline underline-offset-4 transition hover:text-ink">Ver servicio</a>
+          </div>
+
+          <div class="mt-6 overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm">
+            <table class="w-full text-left text-sm">
+              <caption class="sr-only">Precios de personalización</caption>
+              <thead>
+                <tr class="border-b border-black/5 bg-white text-[10px] uppercase tracking-[0.18em] text-neutral-400">
+                  <th scope="col" class="px-5 py-3.5 font-semibold">Servicio</th>
+                  <th scope="col" class="px-5 py-3.5 text-right font-semibold">Precio</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-black/5">
+                <tr class="transition hover:bg-neutral-50/70">
+                  <th scope="row" class="px-5 py-3.5 font-medium">Nombre en espalda</th>
+                  <td class="px-5 py-3.5 text-right font-semibold">$2.990</td>
+                </tr>
+                <tr class="transition hover:bg-neutral-50/70">
+                  <th scope="row" class="px-5 py-3.5 font-medium">Número en espalda</th>
+                  <td class="px-5 py-3.5 text-right font-semibold">$2.990</td>
+                </tr>
+                <tr class="bg-volt/10">
+                  <th scope="row" class="px-5 py-3.5 font-semibold">
+                    Nombre + número
+                    <span class="ml-1.5 rounded-full bg-volt px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink">Ahorra $990</span>
+                  </th>
+                  <td class="px-5 py-3.5 text-right text-base font-extrabold">$4.990</td>
+                </tr>
+                <tr class="transition hover:bg-neutral-50/70">
+                  <th scope="row" class="px-5 py-3.5 font-medium">Parche de liga (por unidad)</th>
+                  <td class="px-5 py-3.5 text-right font-semibold">$2.490</td>
+                </tr>
+                <tr class="transition hover:bg-neutral-50/70">
+                  <th scope="row" class="px-5 py-3.5 font-medium">Parche de campeón (por unidad)</th>
+                  <td class="px-5 py-3.5 text-right font-semibold">$2.990</td>
+                </tr>
+                <tr class="transition hover:bg-neutral-50/70">
+                  <th scope="row" class="px-5 py-3.5 font-medium">Pack nombre + número + 2 parches</th>
+                  <td class="px-5 py-3.5 text-right font-semibold">$8.990</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Extras y envíos -->
+        <div class="space-y-6">
+          <div>
+            <h3 class="font-display text-3xl tracking-wide">EXTRAS</h3>
+            <div class="mt-4 overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm">
+              <table class="w-full text-left text-sm">
+                <caption class="sr-only">Precios de extras</caption>
+                <tbody class="divide-y divide-black/5">
+                  <tr class="transition hover:bg-neutral-50/70">
+                    <th scope="row" class="px-5 py-3.5 font-medium">Empaque de regalo</th>
+                    <td class="px-5 py-3.5 text-right font-semibold">$1.990</td>
+                  </tr>
+                  <tr class="transition hover:bg-neutral-50/70">
+                    <th scope="row" class="px-5 py-3.5 font-medium">Tarjeta dedicatoria</th>
+                    <td class="px-5 py-3.5 text-right font-semibold">$990</td>
+                  </tr>
+                  <tr class="transition hover:bg-neutral-50/70">
+                    <th scope="row" class="px-5 py-3.5 font-medium">Envío asegurado</th>
+                    <td class="px-5 py-3.5 text-right font-semibold">+$1.490</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="px-5 py-3.5 font-medium">Cambio de talla (30 días)</th>
+                    <td class="px-5 py-3.5 text-right font-semibold text-emerald-600">Gratis</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-display text-3xl tracking-wide">ENVÍOS</h3>
+            <div class="mt-4 overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm">
+              <table class="w-full text-left text-sm">
+                <caption class="sr-only">Precios de envío</caption>
+                <tbody class="divide-y divide-black/5">
+                  <tr class="transition hover:bg-neutral-50/70">
+                    <th scope="row" class="px-5 py-3.5 font-medium">
+                      Retiro en tienda
+                      <span class="block text-xs font-normal text-neutral-400">Providencia, Santiago</span>
+                    </th>
+                    <td class="px-5 py-3.5 text-right font-semibold text-emerald-600">Gratis</td>
+                  </tr>
+                  <tr class="transition hover:bg-neutral-50/70">
+                    <th scope="row" class="px-5 py-3.5 font-medium">
+                      Santiago mismo día
+                      <span class="block text-xs font-normal text-neutral-400">Pedidos antes de 13:00</span>
+                    </th>
+                    <td class="px-5 py-3.5 text-right font-semibold">$3.990</td>
+                  </tr>
+                  <tr class="transition hover:bg-neutral-50/70">
+                    <th scope="row" class="px-5 py-3.5 font-medium">Región Metropolitana 24h</th>
+                    <td class="px-5 py-3.5 text-right font-semibold">$2.990</td>
+                  </tr>
+                  <tr class="transition hover:bg-neutral-50/70">
+                    <th scope="row" class="px-5 py-3.5 font-medium">Regiones 24/48h</th>
+                    <td class="px-5 py-3.5 text-right font-semibold">$4.990</td>
+                  </tr>
+                  <tr class="bg-volt/10">
+                    <th scope="row" class="px-5 py-3.5 font-semibold">Compras sobre $50.000</th>
+                    <td class="px-5 py-3.5 text-right font-extrabold text-emerald-600">Gratis</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparativa de ediciones -->
+    <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="text-center">
+        <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">Elige tu versión</p>
+        <h2 class="mt-2 font-display text-5xl tracking-wide sm:text-6xl">COMPARA EDICIONES</h2>
+        <p class="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-neutral-500">
+          La misma pasión, tres niveles de confección. Todos los precios incluyen IVA.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-4 lg:grid-cols-3">
+        <!-- Fan -->
+        <article class="flex flex-col rounded-3xl border border-black/5 bg-white p-7 shadow-sm">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display text-3xl tracking-wide">FAN</h3>
+            <span class="rounded-full bg-neutral-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-500">La más elegida</span>
+          </div>
+          <p class="mt-2 text-sm text-neutral-500">Réplica fiel para el día a día y la tribuna.</p>
+          <div class="mt-5 flex items-baseline gap-2">
+            <p class="font-display text-5xl tracking-wide">$34.990</p>
+            <span class="text-sm text-neutral-400 line-through">$49.990</span>
+          </div>
+          <ul class="mt-6 flex-1 space-y-3 text-sm text-neutral-600">
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-ink" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Tejido transpirable
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-ink" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Escudo bordado
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-ink" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Corte regular
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-ink" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Tallas S a XXL
+            </li>
+          </ul>
+          <a href="index.html#productos" class="mt-7 rounded-full bg-ink py-3 text-center text-xs font-bold uppercase tracking-wider text-white transition hover:bg-neutral-800">Comprar Fan</a>
+        </article>
+
+        <!-- Jugador -->
+        <article class="relative flex flex-col overflow-hidden rounded-3xl bg-ink p-7 text-white shadow-xl">
+          <div class="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-volt/25 blur-3xl"></div>
+          <div class="relative flex items-center justify-between">
+            <h3 class="font-display text-3xl tracking-wide">JUGADOR</h3>
+            <span class="rounded-full bg-volt px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-ink">Recomendada</span>
+          </div>
+          <p class="relative mt-2 text-sm text-white/55">Máximo rendimiento, la misma que se usa en cancha.</p>
+          <div class="relative mt-5 flex items-baseline gap-2">
+            <p class="font-display text-5xl tracking-wide text-volt">$49.990</p>
+            <span class="text-sm text-white/35 line-through">$69.990</span>
+          </div>
+          <ul class="relative mt-6 flex-1 space-y-3 text-sm text-white/70">
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-volt" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Tela ultraligera de secado rápido
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-volt" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Escudos y detalles termosellados
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-volt" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Corte ajustado (slim fit)
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-volt" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Tallas S a XXL
+            </li>
+          </ul>
+          <a href="index.html#productos" class="relative mt-7 rounded-full bg-volt py-3 text-center text-xs font-bold uppercase tracking-wider text-ink transition hover:bg-white">Comprar Jugador</a>
+        </article>
+
+        <!-- Retro -->
+        <article class="flex flex-col rounded-3xl border border-black/5 bg-white p-7 shadow-sm">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display text-3xl tracking-wide">RETRO</h3>
+            <span class="rounded-full bg-neutral-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-500">Edición limitada</span>
+          </div>
+          <p class="mt-2 text-sm text-neutral-500">Clásicos de los 90 y 2000, tal como los recuerdas.</p>
+          <div class="mt-5 flex items-baseline gap-2">
+            <p class="font-display text-5xl tracking-wide">$37.990</p>
+            <span class="text-sm text-neutral-400 line-through">$47.990</span>
+          </div>
+          <ul class="mt-6 flex-1 space-y-3 text-sm text-neutral-600">
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-ink" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Tejido clásico de alta resistencia
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-ink" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Escudo bordado vintage
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-ink" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Corte relajado
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0 text-ink" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Tallas S a XL
+            </li>
+          </ul>
+          <a href="index.html#retro" class="mt-7 rounded-full border border-black/10 py-3 text-center text-xs font-bold uppercase tracking-wider transition hover:border-ink">Comprar Retro</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Ejemplo de compra -->
+    <section class="border-y border-black/5 bg-neutral-50/70 py-16 lg:py-24">
+      <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">Ejemplo real</p>
+          <h2 class="mt-2 font-display text-5xl leading-[0.95] tracking-wide sm:text-6xl">
+            ASÍ SE ARMA<br /><span class="text-neutral-400">TU TOTAL.</span>
+          </h2>
+          <p class="mt-4 max-w-md text-sm leading-relaxed text-neutral-500">
+            Una polera internacional con nombre, número y envío a región. Sin cargos ocultos ni sorpresas al pagar.
+          </p>
+          <p class="mt-6 text-xs leading-relaxed text-neutral-400">
+            Los valores son referenciales. El costo final se confirma al momento de pagar según disponibilidad y comuna de despacho.
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-black/5 bg-white p-7 shadow-sm">
+          <div class="flex items-center justify-between border-b border-black/5 pb-4">
+            <span class="text-[10px] uppercase tracking-[0.2em] text-neutral-400">Detalle del pedido</span>
+            <span class="rounded-full bg-neutral-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-500">Ejemplo</span>
+          </div>
+          <dl class="divide-y divide-black/5 text-sm">
+            <div class="flex items-center justify-between py-3.5">
+              <dt class="text-neutral-600">Polera internacional (Fan)</dt>
+              <dd class="font-semibold">$39.990</dd>
+            </div>
+            <div class="flex items-center justify-between py-3.5">
+              <dt class="text-neutral-600">Personalización nombre + número</dt>
+              <dd class="font-semibold">$4.990</dd>
+            </div>
+            <div class="flex items-center justify-between py-3.5">
+              <dt class="text-neutral-600">Envío a región (24/48h)</dt>
+              <dd class="font-semibold">$4.990</dd>
+            </div>
+            <div class="flex items-center justify-between py-3.5 text-neutral-400">
+              <dt>Descuento envío gratis</dt>
+              <dd class="font-semibold text-emerald-600">—</dd>
+            </div>
+          </dl>
+          <div class="mt-2 flex items-end justify-between border-t border-black/10 pt-4">
+            <span class="text-xs font-bold uppercase tracking-widest text-neutral-400">Total</span>
+            <span class="font-display text-4xl tracking-wide">$49.970</span>
+          </div>
+          <a href="index.html#productos" class="mt-5 flex items-center justify-center gap-2 rounded-full bg-ink py-3.5 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-neutral-800">
+            Armar mi pedido
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contacto" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="relative overflow-hidden rounded-[2rem] bg-ink px-6 py-12 text-white sm:px-12 lg:px-16 lg:py-16">
+        <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-volt/20 blur-[90px]"></div>
+        <div class="relative grid items-center gap-8 lg:grid-cols-2">
+          <div>
+            <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-volt">Cotiza sin costo</p>
+            <h2 class="mt-3 font-display text-4xl leading-none tracking-wide sm:text-5xl">
+              ¿PEDIDO GRANDE<br /><span class="text-volt">O DUDA DE PRECIOS?</span>
+            </h2>
+            <p class="mt-4 max-w-md text-sm leading-relaxed text-white/60">
+              Escríbenos y te preparamos una cotización detallada con envío incluido. Respondemos en menos de 1 hora hábil.
+            </p>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2">
+            <a href="https://wa.me/56912345678" target="_blank" rel="noopener" class="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-volt/50 hover:bg-white/10">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-volt text-ink">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
+                  <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3Zm4.6 12.4c-.2.6-1.2 1.1-1.7 1.1-.5 0-1.1.2-3.5-.9-2.9-1.3-4.6-4.4-4.7-4.6-.2-.2-1-1.4-1-2.6s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4.1.6.5l.8 1.9c.1.2 0 .4-.1.6l-.4.6c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2 1.3 2.3 1.4.2.1.4 0 .5-.1l.9-1c.2-.2.3-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/>
+                </svg>
+              </span>
+              <span>
+                <span class="block text-[10px] uppercase tracking-widest text-white/40">WhatsApp</span>
+                <span class="block text-sm font-semibold">+56 9 1234 5678</span>
+              </span>
+            </a>
+
+            <a href="mailto:ventas@pasion90.cl" class="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-volt/50 hover:bg-white/10">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-volt">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>
+                <span class="block text-[10px] uppercase tracking-widest text-white/40">Ventas</span>
+                <span class="block text-sm font-semibold">ventas@pasion90.cl</span>
+              </span>
+            </a>
+
+            <a href="servicios.html" class="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-volt/50 hover:bg-white/10 sm:col-span-2">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-volt">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3Z" stroke-linejoin="round"/><path d="m14 7 3 3" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span>
+                <span class="block text-[10px] uppercase tracking-widest text-white/40">Servicios</span>
+                <span class="block text-sm font-semibold">Personalización, envíos y venta mayorista</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="mx-auto mt-8 max-w-3xl text-center text-xs leading-relaxed text-neutral-400">
+        Precios expresados en pesos chilenos (CLP) e incluyen IVA. Vigentes desde noviembre de 2026 y sujetos a cambios sin previo aviso.
+        Las promociones no son acumulables entre sí. El costo de envío se calcula según la comuna de despacho al finalizar la compra.
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-black/5 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div class="grid gap-10 md:grid-cols-4">
+        <div>
+          <a href="index.html" class="flex items-center gap-2.5" aria-label="Pasión 90, inicio">
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-ink">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-volt" fill="currentColor" aria-hidden="true">
+                <path d="M13.5 2 4 14h6l-1.5 8L19 10h-6l.5-8Z"/>
+              </svg>
+            </span>
+            <span class="font-display text-2xl leading-none tracking-wide">PASIÓN<span class="text-neutral-400">90</span></span>
+          </a>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-neutral-500">
+            Poleras de fútbol para quienes viven el partido desde la tribuna.
+          </p>
+          <div class="mt-5 flex gap-2">
+            <a href="#" class="grid h-9 w-9 place-items-center rounded-full border border-black/10 text-neutral-600 transition hover:border-ink hover:text-ink" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+            <a href="#" class="grid h-9 w-9 place-items-center rounded-full border border-black/10 text-neutral-600 transition hover:border-ink hover:text-ink" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                <path d="M16 3c.4 2.3 1.8 3.7 4 4v3c-1.5 0-2.9-.5-4-1.3V15a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.2a2.9 2.9 0 1 0 2 2.7V3h3Z"/>
+              </svg>
+            </a>
+            <a href="#" class="grid h-9 w-9 place-items-center rounded-full border border-black/10 text-neutral-600 transition hover:border-ink hover:text-ink" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3Zm4.6 12.4c-.2.6-1.2 1.1-1.7 1.1-.5 0-1.1.2-3.5-.9-2.9-1.3-4.6-4.4-4.7-4.6-.2-.2-1-1.4-1-2.6s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4.1.6.5l.8 1.9c.1.2 0 .4-.1.6l-.4.6c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2 1.3 2.3 1.4.2.1.4 0 .5-.1l.9-1c.2-.2.3-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400">Tienda</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-neutral-600">
+            <li><a href="index.html#productos" class="transition hover:text-ink">Todas las poleras</a></li>
+            <li><a href="index.html#categorias" class="transition hover:text-ink">Categorías</a></li>
+            <li><a href="index.html#retro" class="transition hover:text-ink">Colección retro</a></li>
+            <li><a href="index.html#productos" class="transition hover:text-ink">Niños</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400">Información</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-neutral-600">
+            <li><a href="servicios.html" class="transition hover:text-ink">Servicios</a></li>
+            <li><a href="#tarifas" data-open-tab="minorista" class="transition hover:text-ink">Precios minorista</a></li>
+            <li><a href="#tarifas" data-open-tab="mayorista" class="transition hover:text-ink">Precios mayorista</a></li>
+            <li><a href="servicios.html#personalizacion" class="transition hover:text-ink">Personalización</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400">Contacto</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-neutral-600">
+            <li>ventas@pasion90.cl</li>
+            <li>+56 9 1234 5678</li>
+            <li>Lun a Vie · 9:00 – 19:00</li>
+            <li>Santiago, Chile</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-black/5 pt-6 text-xs text-neutral-400 sm:flex-row">
+        <p>© <span id="year">2026</span> Pasión 90. Todos los derechos reservados.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="transition hover:text-ink">Términos</a>
+          <a href="#" class="transition hover:text-ink">Privacidad</a>
+          <span class="hidden sm:inline">Webpay · Visa · Mastercard · Transferencia</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* Menú móvil */
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+      const open = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', open);
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('shadow-sm', window.scrollY > 8);
+    }, { passive: true });
+
+    /* Toggle minorista / mayorista */
+    const priceTabs = document.querySelectorAll('[data-price-tab]');
+    const pricePanels = document.querySelectorAll('[data-price-panel]');
+
+    function setPriceTab(name) {
+      priceTabs.forEach((tab) => {
+        const active = tab.dataset.priceTab === name;
+        tab.setAttribute('aria-selected', String(active));
+        tab.classList.toggle('bg-ink', active);
+        tab.classList.toggle('text-white', active);
+        tab.classList.toggle('text-neutral-500', !active);
+        tab.classList.toggle('hover:text-ink', !active);
+      });
+
+      pricePanels.forEach((panel) => {
+        panel.classList.toggle('hidden', panel.dataset.pricePanel !== name);
+      });
+    }
+
+    priceTabs.forEach((tab) => {
+      tab.addEventListener('click', () => setPriceTab(tab.dataset.priceTab));
+    });
+
+    document.querySelectorAll('[data-open-tab]').forEach((link) => {
+      link.addEventListener('click', () => setPriceTab(link.dataset.openTab));
+    });
+  </script>
+</body>
+</html>
