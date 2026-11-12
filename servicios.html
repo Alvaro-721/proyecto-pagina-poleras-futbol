@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios — Pasión 90</title>
+  <meta name="description" content="Personalización de poleras, envío express, venta mayorista, asesoría de tallas y cambios sin complicaciones. Conoce todos los servicios de Pasión 90." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink: '#0A0A0B',
+            volt: '#D4FF3D',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    ::selection { background: #D4FF3D; color: #0A0A0B; }
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    .fade-up { animation: fadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    summary::-webkit-details-marker { display: none; }
+    summary { list-style: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body class="bg-white font-sans text-ink antialiased">
+
+  <!-- Barra de anuncio -->
+  <div class="bg-ink text-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.18em] sm:px-6 lg:px-8">
+      <p class="flex items-center gap-2">
+        <span class="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-volt"></span>
+        Envío gratis en compras sobre $50.000
+      </p>
+      <p class="hidden text-white/60 sm:block">Despacho a todo Chile en 24/48 hrs</p>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header id="navbar" class="sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-xl transition-shadow">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="index.html" class="flex items-center gap-2.5" aria-label="Pasión 90, inicio">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-ink">
+          <svg viewBox="0 0 24 24" class="h-6 w-6 text-volt" fill="currentColor" aria-hidden="true">
+            <path d="M13.5 2 4 14h6l-1.5 8L19 10h-6l.5-8Z"/>
+          </svg>
+        </span>
+        <span class="font-display text-2xl leading-none tracking-wide">PASIÓN<span class="text-neutral-400">90</span></span>
+      </a>
+
+      <ul class="hidden items-center gap-8 text-sm font-semibold text-neutral-600 md:flex">
+        <li><a href="index.html" class="transition hover:text-ink">Inicio</a></li>
+        <li><a href="index.html#productos" class="transition hover:text-ink">Poleras</a></li>
+        <li><a href="servicios.html" aria-current="page" class="text-ink underline decoration-volt decoration-[3px] underline-offset-8">Servicios</a></li>
+        <li><a href="index.html#retro" class="transition hover:text-ink">Retro</a></li>
+        <li><a href="#contacto" class="transition hover:text-ink">Contacto</a></li>
+      </ul>
+
+      <div class="flex items-center gap-2">
+        <a href="index.html#productos" class="hidden h-10 items-center gap-2 rounded-full bg-ink px-5 text-sm font-semibold text-white transition hover:bg-neutral-800 sm:flex">
+          Comprar
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <button type="button" id="menuBtn" class="grid h-10 w-10 place-items-center rounded-full border border-black/10 md:hidden" aria-label="Abrir menú" aria-expanded="false">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="hidden border-t border-black/5 bg-white md:hidden">
+      <ul class="flex flex-col gap-1 px-4 py-4 text-sm font-semibold text-neutral-700">
+        <li><a href="index.html" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Inicio</a></li>
+        <li><a href="index.html#productos" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Poleras</a></li>
+        <li><a href="servicios.html" class="block rounded-lg bg-neutral-100 px-3 py-2">Servicios</a></li>
+        <li><a href="index.html#retro" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Retro</a></li>
+        <li><a href="#contacto" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="relative overflow-hidden bg-ink text-white">
+      <div class="hero-grid absolute inset-0"></div>
+      <div class="pointer-events-none absolute -right-32 top-0 h-[480px] w-[480px] rounded-full bg-volt/20 blur-[120px]"></div>
+      <div class="pointer-events-none absolute -bottom-40 left-1/4 h-[380px] w-[380px] rounded-full bg-volt/10 blur-[100px]"></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <nav aria-label="Migas de pan" class="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">
+          <a href="index.html" class="transition hover:text-volt">Inicio</a>
+          <span>/</span>
+          <span class="text-volt">Servicios</span>
+        </nav>
+
+        <div class="mt-8 grid items-end gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <div class="fade-up">
+            <h1 class="font-display text-6xl leading-[0.92] tracking-wide sm:text-7xl lg:text-8xl">
+              MÁS QUE<br /><span class="text-volt">UNA POLERA.</span>
+            </h1>
+            <p class="mt-6 max-w-lg text-base leading-relaxed text-white/60">
+              Personalizamos, despachamos y respaldamos cada compra. Todo lo que hacemos está pensado para que solo te preocupes de lucir tu camiseta.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#personalizacion" class="group inline-flex items-center gap-2 rounded-full bg-volt px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-ink transition hover:bg-white">
+                Personalizar mi polera
+                <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="https://wa.me/56912345678" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition hover:border-volt hover:text-volt">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                  <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3Zm4.6 12.4c-.2.6-1.2 1.1-1.7 1.1-.5 0-1.1.2-3.5-.9-2.9-1.3-4.6-4.4-4.7-4.6-.2-.2-1-1.4-1-2.6s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4.1.6.5l.8 1.9c.1.2 0 .4-.1.6l-.4.6c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2 1.3 2.3 1.4.2.1.4 0 .5-.1l.9-1c.2-.2.3-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/>
+                </svg>
+                Hablar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <dl class="grid grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+              <dt class="text-[10px] uppercase tracking-[0.2em] text-white/40">Clientes felices</dt>
+              <dd class="mt-1 font-display text-4xl tracking-wide">+12.000</dd>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+              <dt class="text-[10px] uppercase tracking-[0.2em] text-white/40">Despacho</dt>
+              <dd class="mt-1 font-display text-4xl tracking-wide">24/48h</dd>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+              <dt class="text-[10px] uppercase tracking-[0.2em] text-white/40">Para cambios</dt>
+              <dd class="mt-1 font-display text-4xl tracking-wide">30 días</dd>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+              <dt class="text-[10px] uppercase tracking-[0.2em] text-white/40">Valoración</dt>
+              <dd class="mt-1 flex items-center gap-1 font-display text-4xl tracking-wide">4.9<span class="text-base text-volt">★</span></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">Lo que hacemos</p>
+          <h2 class="mt-2 font-display text-5xl tracking-wide sm:text-6xl">NUESTROS SERVICIOS</h2>
+          <p class="mt-3 max-w-xl text-sm leading-relaxed text-neutral-500">
+            Desde la personalización hasta la entrega en tu puerta. Elige el servicio que necesitas y nosotros nos encargamos del resto.
+          </p>
+        </div>
+        <a href="#contacto" class="group inline-flex items-center gap-2 text-sm font-semibold text-neutral-500 transition hover:text-ink">
+          Pedir una cotización
+          <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+        <!-- Personalización -->
+        <article class="group relative flex flex-col overflow-hidden rounded-3xl bg-ink p-7 text-white transition hover:-translate-y-1">
+          <div class="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-volt/20 blur-2xl transition group-hover:bg-volt/35"></div>
+          <div class="relative flex items-start justify-between gap-4">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-volt text-ink">
+              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3Z" stroke-linejoin="round"/>
+                <path d="m14 7 3 3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="rounded-full border border-volt/30 bg-volt/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-volt">Más pedido</span>
+          </div>
+          <h3 class="relative mt-6 font-display text-3xl tracking-wide">Personalización</h3>
+          <p class="relative mt-2 flex-1 text-sm leading-relaxed text-white/55">
+            Nombre, número y parches oficiales. Estampado térmico de alta durabilidad que no se descascara con el lavado.
+          </p>
+          <div class="relative mt-6 flex items-center justify-between border-t border-white/10 pt-4">
+            <span class="text-xs uppercase tracking-widest text-white/40">Desde <strong class="text-base normal-case tracking-normal text-volt">$4.990</strong></span>
+            <a href="#personalizacion" class="inline-flex items-center gap-1 text-sm font-semibold text-volt hover:text-white">
+              Ver más
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Envío -->
+        <article class="group flex flex-col rounded-3xl border border-black/5 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+          <div class="flex items-start justify-between gap-4">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-neutral-100 text-ink transition group-hover:bg-volt">
+              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/>
+              </svg>
+            </span>
+            <span class="rounded-full bg-neutral-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-500">Todo Chile</span>
+          </div>
+          <h3 class="mt-6 font-display text-3xl tracking-wide">Envío express</h3>
+          <p class="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
+            Despachamos el mismo día en Santiago y en 24/48 hrs a regiones. Envío gratis en compras sobre $50.000.
+          </p>
+          <div class="mt-6 flex items-center justify-between border-t border-black/5 pt-4">
+            <span class="text-xs uppercase tracking-widest text-neutral-400">Gratis sobre</span>
+            <strong class="text-base">$50.000</strong>
+          </div>
+        </article>
+
+        <!-- Mayorista -->
+        <article class="group flex flex-col rounded-3xl border border-black/5 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+          <div class="flex items-start justify-between gap-4">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-neutral-100 text-ink transition group-hover:bg-volt">
+              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M3 8.5 12 4l9 4.5-9 4.5-9-4.5Z" stroke-linejoin="round"/>
+                <path d="M3 8.5V16l9 4.5 9-4.5V8.5M12 13v7.5" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="rounded-full bg-neutral-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-500">Clubes y empresas</span>
+          </div>
+          <h3 class="mt-6 font-display text-3xl tracking-wide">Venta mayorista</h3>
+          <p class="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
+            Equipamos clubes, colegios y equipos de empresa. Descuentos por volumen desde 10 unidades y atención dedicada.
+          </p>
+          <div class="mt-6 flex items-center justify-between border-t border-black/5 pt-4">
+            <span class="text-xs uppercase tracking-widest text-neutral-400">Desde</span>
+            <strong class="text-base">10 unidades</strong>
+          </div>
+        </article>
+
+        <!-- Asesoría de tallas -->
+        <article class="group flex flex-col rounded-3xl border border-black/5 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+          <div class="flex items-start justify-between gap-4">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-neutral-100 text-ink transition group-hover:bg-volt">
+              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="m3 15 6-6 3 3 3-3 3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 9V4h6v5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="rounded-full bg-neutral-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-500">Gratis</span>
+          </div>
+          <h3 class="mt-6 font-display text-3xl tracking-wide">Asesoría de tallas</h3>
+          <p class="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
+            No sabes si eres M o L? Te guiamos con medidas reales por WhatsApp y te ayudamos a acertar a la primera.
+          </p>
+          <div class="mt-6 flex items-center justify-between border-t border-black/5 pt-4">
+            <span class="text-xs uppercase tracking-widest text-neutral-400">Tallas</span>
+            <strong class="text-base">S — XXL</strong>
+          </div>
+        </article>
+
+        <!-- Cambios -->
+        <article class="group flex flex-col rounded-3xl border border-black/5 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+          <div class="flex items-start justify-between gap-4">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-neutral-100 text-ink transition group-hover:bg-volt">
+              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="rounded-full bg-neutral-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-500">Sin preguntas</span>
+          </div>
+          <h3 class="mt-6 font-display text-3xl tracking-wide">Cambios fáciles</h3>
+          <p class="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
+            Tienes 30 días para cambiar tu talla o modelo. Sin letra chica, solo tu boleta y la polera en buen estado.
+          </p>
+          <div class="mt-6 flex items-center justify-between border-t border-black/5 pt-4">
+            <span class="text-xs uppercase tracking-widest text-neutral-400">Plazo</span>
+            <strong class="text-base">30 días</strong>
+          </div>
+        </article>
+
+        <!-- Pago seguro -->
+        <article class="group flex flex-col rounded-3xl border border-black/5 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+          <div class="flex items-start justify-between gap-4">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-neutral-100 text-ink transition group-hover:bg-volt">
+              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M12 3 5 6v5c0 4.4 3 8 7 10 4-2 7-5.6 7-10V6l-7-3Z" stroke-linejoin="round"/>
+                <path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="rounded-full bg-neutral-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-500">Protegido</span>
+          </div>
+          <h3 class="mt-6 font-display text-3xl tracking-wide">Compra segura</h3>
+          <p class="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
+            Paga con Webpay, tarjetas o transferencia. Hasta 3 cuotas sin interés y comprobante inmediato por correo.
+          </p>
+          <div class="mt-6 flex items-center justify-between border-t border-black/5 pt-4">
+            <span class="text-xs uppercase tracking-widest text-neutral-400">Cuotas</span>
+            <strong class="text-base">Hasta 3x</strong>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Personalización destacada -->
+    <section id="personalizacion" class="border-y border-black/5 bg-neutral-50/70">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-500">
+            <span class="h-1.5 w-1.5 rounded-full bg-volt"></span>
+            Personalización
+          </span>
+          <h2 class="mt-5 font-display text-5xl leading-[0.95] tracking-wide sm:text-6xl">
+            TU NOMBRE,<br /><span class="text-neutral-400">TU NÚMERO.</span>
+          </h2>
+          <p class="mt-5 max-w-md text-sm leading-relaxed text-neutral-500">
+            Agrega tu nombre y dorsal a cualquier polera del catálogo. Usamos estampado térmico de alta durabilidad, resistente al lavado y con acabado profesional.
+          </p>
+
+          <ul class="mt-7 space-y-3 text-sm text-neutral-600">
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-ink text-volt">
+                <svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              Nombre y número en tipografía oficial de la liga
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-ink text-volt">
+                <svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              Parches de liga y campeón disponibles
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-ink text-volt">
+                <svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              Listo en 24 hrs hábiles y sin costo por el diseño
+            </li>
+          </ul>
+
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a href="index.html#productos" class="rounded-full bg-ink px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-neutral-800">
+              Elegir mi polera
+            </a>
+            <p class="text-sm text-neutral-500">
+              Nombre + número <strong class="text-ink">$4.990</strong>
+            </p>
+          </div>
+        </div>
+
+        <!-- Maqueta de polera personalizada -->
+        <div class="relative mx-auto w-full max-w-md">
+          <div class="absolute inset-10 rounded-full bg-volt/40 blur-3xl"></div>
+          <div class="relative rotate-[-2deg] rounded-[2rem] border border-black/5 bg-white p-6 shadow-xl transition hover:rotate-0">
+            <div class="flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
+              <span>Vista previa</span>
+              <span class="text-ink">#10</span>
+            </div>
+
+            <svg viewBox="0 0 200 200" class="mx-auto my-4 w-full max-w-[300px]" role="img" aria-label="Polera personalizada con nombre Pérez y número 10">
+              <defs>
+                <linearGradient id="shine-demo" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25"/>
+                  <stop offset="45%" stop-color="#ffffff" stop-opacity="0"/>
+                  <stop offset="100%" stop-color="#000000" stop-opacity="0.10"/>
+                </linearGradient>
+              </defs>
+
+              <ellipse cx="100" cy="184" rx="52" ry="7" fill="#000" opacity="0.10"/>
+
+              <path d="M68 34 L84 26 Q100 38 116 26 L132 34 L166 54 L150 84 L132 74 L132 176 Q100 184 68 176 L68 74 L50 84 L34 54 Z" fill="#FFFFFF" stroke="#0A0A0B" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M68 34 L84 26 Q100 38 116 26 L132 34 L166 54 L150 84 L132 74 L132 176 Q100 184 68 176 L68 74 L50 84 L34 54 Z" fill="url(#shine-demo)"/>
+
+              <path d="M84 26 Q100 39 116 26" fill="none" stroke="#0A0A0B" stroke-width="4.5" stroke-linecap="round"/>
+              <path d="M34 54 L50 84" stroke="#0A0A0B" stroke-width="4" stroke-linecap="round"/>
+              <path d="M166 54 L150 84" stroke="#0A0A0B" stroke-width="4" stroke-linecap="round"/>
+
+              <circle cx="83" cy="70" r="7.5" fill="none" stroke="#0A0A0B" stroke-width="2"/>
+              <path d="M83 65.5 l1.6 3.2 3.5.5-2.5 2.4.6 3.5-3.2-1.7-3.2 1.7.6-3.5-2.5-2.4 3.5-.5Z" fill="#0A0A0B"/>
+
+              <text x="100" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#0A0A0B">PÉREZ</text>
+              <text x="100" y="140" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="46" fill="#0A0A0B">10</text>
+            </svg>
+
+            <div class="flex items-center justify-between border-t border-black/5 pt-4">
+              <div>
+                <p class="text-[10px] uppercase tracking-widest text-neutral-400">Polera + personalización</p>
+                <p class="font-display text-2xl tracking-wide">$39.980</p>
+              </div>
+              <span class="rounded-full bg-volt px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-ink">Listo en 24h</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="text-center">
+        <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">Paso a paso</p>
+        <h2 class="mt-2 font-display text-5xl tracking-wide sm:text-6xl">CÓMO FUNCIONA</h2>
+      </div>
+
+      <ol class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <li class="relative rounded-3xl border border-black/5 bg-white p-6 shadow-sm">
+          <span class="font-display text-5xl leading-none text-neutral-200">01</span>
+          <h3 class="mt-4 text-base font-bold">Elige tu polera</h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-500">Explora el catálogo y selecciona tu equipo, talla y versión favorita.</p>
+        </li>
+        <li class="relative rounded-3xl border border-black/5 bg-white p-6 shadow-sm">
+          <span class="font-display text-5xl leading-none text-neutral-200">02</span>
+          <h3 class="mt-4 text-base font-bold">Personaliza</h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-500">Agrega nombre, número y parches. Te enviamos una vista previa antes de estampar.</p>
+        </li>
+        <li class="relative rounded-3xl border border-black/5 bg-white p-6 shadow-sm">
+          <span class="font-display text-5xl leading-none text-neutral-200">03</span>
+          <h3 class="mt-4 text-base font-bold">Paga seguro</h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-500">Webpay, tarjetas o transferencia. Recibes tu comprobante al instante por correo.</p>
+        </li>
+        <li class="relative rounded-3xl bg-ink p-6 text-white">
+          <span class="font-display text-5xl leading-none text-volt/40">04</span>
+          <h3 class="mt-4 text-base font-bold">Recibe y luce</h3>
+          <p class="mt-2 text-sm leading-relaxed text-white/55">Despachamos en 24/48 hrs y te avisamos con el número de seguimiento.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- FAQ -->
+    <section class="border-y border-black/5 bg-neutral-50/70 py-16 lg:py-24">
+      <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">Dudas frecuentes</p>
+          <h2 class="mt-2 font-display text-5xl tracking-wide sm:text-6xl">PREGUNTAS<br />FRECUENTES</h2>
+          <p class="mt-4 max-w-sm text-sm leading-relaxed text-neutral-500">
+            Si no encuentras lo que buscas, escríbenos por WhatsApp y te respondemos en minutos.
+          </p>
+          <a href="https://wa.me/56912345678" target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-neutral-800">
+            Escribir por WhatsApp
+          </a>
+        </div>
+
+        <div class="space-y-3">
+          <details class="group rounded-2xl border border-black/5 bg-white p-5 shadow-sm" open>
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-sm font-bold">
+              ¿Cuánto demora la personalización?
+              <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-neutral-100 transition group-open:rotate-45">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-neutral-500">
+              El estampado se realiza en 24 horas hábiles. Si además elegiste despacho, el envío se suma aparte (24/48 hrs a regiones). En total, tu polera personalizada llega en 2 a 4 días hábiles.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-sm font-bold">
+              ¿Hacen envíos a todo Chile?
+              <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-neutral-100 transition group-open:rotate-45">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-neutral-500">
+              Sí. Despachamos a todo Chile con Starken y Chilexpress. En Santiago ofrecemos entrega el mismo día para pedidos antes de las 13:00 hrs. El envío es gratis sobre $50.000.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-sm font-bold">
+              ¿Venden al por mayor a clubes o empresas?
+              <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-neutral-100 transition group-open:rotate-45">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-neutral-500">
+              Por supuesto. Trabajamos con clubes, colegios y equipos de empresa desde 10 unidades, con descuentos por volumen y personalización incluida. Escríbenos para armar tu cotización.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-sm font-bold">
+              ¿Puedo cambiar la talla si no me queda?
+              <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-neutral-100 transition group-open:rotate-45">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-neutral-500">
+              Tienes 30 días desde la recepción para cambiar talla o modelo, siempre que la polera esté sin uso y con su etiqueta. Las poleras personalizadas solo se cambian por falla de fabricación.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-sm font-bold">
+              ¿Cómo lavo mi polera personalizada?
+              <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-neutral-100 transition group-open:rotate-45">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-neutral-500">
+              Lava al revés, en agua fría y con programa suave. No uses secadora ni planches directamente sobre el estampado. Con esos cuidados, el nombre y el número se mantienen intactos por años.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contacto" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="relative overflow-hidden rounded-[2rem] bg-ink px-6 py-12 text-white sm:px-12 lg:px-16 lg:py-16">
+        <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-volt/20 blur-[90px]"></div>
+        <div class="relative grid items-center gap-8 lg:grid-cols-2">
+          <div>
+            <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-volt">Hablemos</p>
+            <h2 class="mt-3 font-display text-4xl leading-none tracking-wide sm:text-5xl">
+              ¿NECESITAS ALGO<br /><span class="text-volt">ESPECIAL?</span>
+            </h2>
+            <p class="mt-4 max-w-md text-sm leading-relaxed text-white/60">
+              Cotizaciones, pedidos mayoristas o una polera imposible de encontrar. Cuéntanos qué necesitas y lo hacemos realidad.
+            </p>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2">
+            <a href="https://wa.me/56912345678" target="_blank" rel="noopener" class="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-volt/50 hover:bg-white/10">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-volt text-ink">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
+                  <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3Zm4.6 12.4c-.2.6-1.2 1.1-1.7 1.1-.5 0-1.1.2-3.5-.9-2.9-1.3-4.6-4.4-4.7-4.6-.2-.2-1-1.4-1-2.6s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4.1.6.5l.8 1.9c.1.2 0 .4-.1.6l-.4.6c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2 1.3 2.3 1.4.2.1.4 0 .5-.1l.9-1c.2-.2.3-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/>
+                </svg>
+              </span>
+              <span>
+                <span class="block text-[10px] uppercase tracking-widest text-white/40">WhatsApp</span>
+                <span class="block text-sm font-semibold">+56 9 1234 5678</span>
+              </span>
+            </a>
+
+            <a href="mailto:hola@pasion90.cl" class="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-volt/50 hover:bg-white/10">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-volt">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>
+                <span class="block text-[10px] uppercase tracking-widest text-white/40">Correo</span>
+                <span class="block text-sm font-semibold">hola@pasion90.cl</span>
+              </span>
+            </a>
+
+            <a href="index.html#productos" class="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-volt/50 hover:bg-white/10 sm:col-span-2">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-volt">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z" stroke-linejoin="round"/>
+                  <path d="M9 9V6a3 3 0 0 1 6 0v3" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span>
+                <span class="block text-[10px] uppercase tracking-widest text-white/40">Catálogo</span>
+                <span class="block text-sm font-semibold">Ver todas las poleras disponibles</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-black/5 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div class="grid gap-10 md:grid-cols-4">
+        <div>
+          <a href="index.html" class="flex items-center gap-2.5" aria-label="Pasión 90, inicio">
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-ink">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-volt" fill="currentColor" aria-hidden="true">
+                <path d="M13.5 2 4 14h6l-1.5 8L19 10h-6l.5-8Z"/>
+              </svg>
+            </span>
+            <span class="font-display text-2xl leading-none tracking-wide">PASIÓN<span class="text-neutral-400">90</span></span>
+          </a>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-neutral-500">
+            Poleras de fútbol para quienes viven el partido desde la tribuna.
+          </p>
+          <div class="mt-5 flex gap-2">
+            <a href="#" class="grid h-9 w-9 place-items-center rounded-full border border-black/10 text-neutral-600 transition hover:border-ink hover:text-ink" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+            <a href="#" class="grid h-9 w-9 place-items-center rounded-full border border-black/10 text-neutral-600 transition hover:border-ink hover:text-ink" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                <path d="M16 3c.4 2.3 1.8 3.7 4 4v3c-1.5 0-2.9-.5-4-1.3V15a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.2a2.9 2.9 0 1 0 2 2.7V3h3Z"/>
+              </svg>
+            </a>
+            <a href="#" class="grid h-9 w-9 place-items-center rounded-full border border-black/10 text-neutral-600 transition hover:border-ink hover:text-ink" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3Zm4.6 12.4c-.2.6-1.2 1.1-1.7 1.1-.5 0-1.1.2-3.5-.9-2.9-1.3-4.6-4.4-4.7-4.6-.2-.2-1-1.4-1-2.6s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4.1.6.5l.8 1.9c.1.2 0 .4-.1.6l-.4.6c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2 1.3 2.3 1.4.2.1.4 0 .5-.1l.9-1c.2-.2.3-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400">Servicios</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-neutral-600">
+            <li><a href="#personalizacion" class="transition hover:text-ink">Personalización</a></li>
+            <li><a href="#servicios" class="transition hover:text-ink">Envío express</a></li>
+            <li><a href="#servicios" class="transition hover:text-ink">Venta mayorista</a></li>
+            <li><a href="#servicios" class="transition hover:text-ink">Cambios y devoluciones</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400">Tienda</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-neutral-600">
+            <li><a href="index.html#productos" class="transition hover:text-ink">Todas las poleras</a></li>
+            <li><a href="index.html#categorias" class="transition hover:text-ink">Categorías</a></li>
+            <li><a href="index.html#retro" class="transition hover:text-ink">Colección retro</a></li>
+            <li><a href="index.html#productos" class="transition hover:text-ink">Niños</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400">Contacto</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-neutral-600">
+            <li>hola@pasion90.cl</li>
+            <li>+56 9 1234 5678</li>
+            <li>Lun a Vie · 9:00 – 19:00</li>
+            <li>Santiago, Chile</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-black/5 pt-6 text-xs text-neutral-400 sm:flex-row">
+        <p>© <span id="year">2026</span> Pasión 90. Todos los derechos reservados.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="transition hover:text-ink">Términos</a>
+          <a href="#" class="transition hover:text-ink">Privacidad</a>
+          <span class="hidden sm:inline">Webpay · Visa · Mastercard · Transferencia</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+      const open = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', open);
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('shadow-sm', window.scrollY > 8);
+    }, { passive: true });
+  </script>
+</body>
+</html>
