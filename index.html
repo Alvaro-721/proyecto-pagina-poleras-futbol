@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pasión 90 — Poleras de fútbol</title>
+  <meta name="description" content="Poleras de fútbol nacionales e internacionales, retro y para niños. Envío a todo Chile en 24/48 hrs." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink: '#0A0A0B',
+            volt: '#D4FF3D',
+          },
+          boxShadow: {
+            glow: '0 0 80px -10px rgba(212, 255, 61, 0.45)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    ::selection { background: #D4FF3D; color: #0A0A0B; }
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .floaty { animation: floaty 6s ease-in-out infinite; }
+    .fade-up { animation: fadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      .floaty, .fade-up { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body class="bg-white font-sans text-ink antialiased">
+
+  <!-- Barra de anuncio -->
+  <div class="bg-ink text-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.18em] sm:px-6 lg:px-8">
+      <p class="flex items-center gap-2">
+        <span class="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-volt"></span>
+        Envío gratis en compras sobre $50.000
+      </p>
+      <p class="hidden text-white/60 sm:block">Despacho a todo Chile en 24/48 hrs</p>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header id="navbar" class="sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-xl transition-shadow">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="#" class="flex items-center gap-2.5" aria-label="Pasión 90, inicio">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-ink">
+          <svg viewBox="0 0 24 24" class="h-6 w-6 text-volt" fill="currentColor" aria-hidden="true">
+            <path d="M13.5 2 4 14h6l-1.5 8L19 10h-6l.5-8Z"/>
+          </svg>
+        </span>
+        <span class="font-display text-2xl leading-none tracking-wide">PASIÓN<span class="text-neutral-400">90</span></span>
+      </a>
+
+      <ul class="hidden items-center gap-8 text-sm font-semibold text-neutral-600 md:flex">
+        <li><a href="#productos" class="transition hover:text-ink">Poleras</a></li>
+        <li><a href="#categorias" class="transition hover:text-ink">Categorías</a></li>
+        <li><a href="#retro" class="transition hover:text-ink">Retro</a></li>
+        <li><a href="#beneficios" class="transition hover:text-ink">Beneficios</a></li>
+        <li><a href="#contacto" class="transition hover:text-ink">Contacto</a></li>
+      </ul>
+
+      <div class="flex items-center gap-2">
+        <button type="button" class="hidden h-10 items-center gap-2 rounded-full border border-black/10 px-4 text-sm font-semibold transition hover:border-black/30 sm:flex" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/>
+          </svg>
+          Buscar
+        </button>
+
+        <button type="button" id="cartBtn" class="relative grid h-10 w-10 place-items-center rounded-full bg-ink text-white transition hover:bg-neutral-800" aria-label="Carrito de compras">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z" stroke-linejoin="round"/>
+            <path d="M9 9V6a3 3 0 0 1 6 0v3" stroke-linecap="round"/>
+          </svg>
+          <span id="cartCount" class="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-volt px-1 text-[11px] font-bold text-ink">0</span>
+        </button>
+
+        <button type="button" id="menuBtn" class="grid h-10 w-10 place-items-center rounded-full border border-black/10 md:hidden" aria-label="Abrir menú" aria-expanded="false">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="hidden border-t border-black/5 bg-white md:hidden">
+      <ul class="flex flex-col gap-1 px-4 py-4 text-sm font-semibold text-neutral-700">
+        <li><a href="#productos" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Poleras</a></li>
+        <li><a href="#categorias" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Categorías</a></li>
+        <li><a href="#retro" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Retro</a></li>
+        <li><a href="#beneficios" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Beneficios</a></li>
+        <li><a href="#contacto" class="block rounded-lg px-3 py-2 hover:bg-neutral-100">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="relative overflow-hidden bg-ink text-white">
+      <div class="hero-grid absolute inset-0"></div>
+      <div class="pointer-events-none absolute -right-32 top-0 h-[520px] w-[520px] rounded-full bg-volt/20 blur-[120px]"></div>
+      <div class="pointer-events-none absolute -bottom-40 left-1/4 h-[420px] w-[420px] rounded-full bg-volt/10 blur-[100px]"></div>
+
+      <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
+        <div class="fade-up">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-volt backdrop-blur">
+            <span class="h-1.5 w-1.5 rounded-full bg-volt"></span>
+            Nueva temporada 2026
+          </span>
+
+          <h1 class="mt-6 font-display text-6xl leading-[0.92] tracking-wide sm:text-7xl lg:text-8xl">
+            LA POLERA<br />
+            <span class="text-volt">NO SE EXPLICA,</span><br />
+            SE LLEVA PUESTA.
+          </h1>
+
+          <p class="mt-6 max-w-md text-base leading-relaxed text-white/60">
+            Nacionales, internacionales y retro. Calidad de estadio, envío a todo Chile y tallas de la S a la XXL.
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#productos" class="group inline-flex items-center gap-2 rounded-full bg-volt px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-ink transition hover:bg-white">
+              Comprar ahora
+              <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#retro" class="inline-flex items-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition hover:border-volt hover:text-volt">
+              Ver colección retro
+            </a>
+          </div>
+
+          <dl class="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-white/10 pt-6">
+            <div>
+              <dt class="text-[11px] uppercase tracking-widest text-white/40">Clientes</dt>
+              <dd class="mt-1 font-display text-3xl tracking-wide">+12.000</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] uppercase tracking-widest text-white/40">Valoración</dt>
+              <dd class="mt-1 flex items-center gap-1 font-display text-3xl tracking-wide">4.9<span class="text-sm text-volt">★</span></dd>
+            </div>
+            <div>
+              <dt class="text-[11px] uppercase tracking-widest text-white/40">Despacho</dt>
+              <dd class="mt-1 font-display text-3xl tracking-wide">24/48h</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Visual hero -->
+        <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+          <div class="absolute inset-8 rounded-full bg-volt/25 blur-3xl"></div>
+
+          <div class="relative floaty rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/10 to-white/0 p-6 backdrop-blur-sm">
+            <div class="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.2em] text-white/50">
+              <span>Edición limitada</span>
+              <span class="text-volt">#90</span>
+            </div>
+            <div id="heroJersey" class="mx-auto my-2 aspect-square w-full max-w-[340px]"></div>
+            <div class="flex items-end justify-between gap-4 border-t border-white/10 pt-4">
+              <div>
+                <p class="text-[11px] uppercase tracking-widest text-white/40">Polera Third 2026</p>
+                <p class="font-display text-3xl tracking-wide">$44.990</p>
+              </div>
+              <span class="rounded-full bg-volt px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-ink">Stock limitado</span>
+            </div>
+          </div>
+
+          <div class="absolute -left-4 top-10 hidden rotate-[-6deg] rounded-2xl border border-white/10 bg-white/10 px-4 py-3 backdrop-blur-md sm:block">
+            <p class="text-[10px] uppercase tracking-widest text-white/50">Tallas</p>
+            <p class="font-display text-xl tracking-wide">S — XXL</p>
+          </div>
+
+          <div class="absolute -right-3 bottom-16 hidden rotate-[5deg] items-center gap-2 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 backdrop-blur-md sm:flex">
+            <span class="grid h-8 w-8 place-items-center rounded-full bg-volt text-ink">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
+                <path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div>
+              <p class="text-[10px] uppercase tracking-widest text-white/50">Calidad</p>
+              <p class="text-sm font-semibold">Premium</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ligas -->
+      <div class="relative border-t border-white/10">
+        <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-10 gap-y-4 px-4 py-6 text-[11px] font-semibold uppercase tracking-[0.25em] text-white/35 sm:px-6 lg:px-8">
+          <span>Liga Nacional</span><span class="hidden text-white/15 sm:inline">/</span>
+          <span>La Liga</span><span class="hidden text-white/15 sm:inline">/</span>
+          <span>Premier League</span><span class="hidden text-white/15 sm:inline">/</span>
+          <span>Serie A</span><span class="hidden text-white/15 sm:inline">/</span>
+          <span>Selecciones</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categorías -->
+    <section id="categorias" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">Explora</p>
+          <h2 class="mt-2 font-display text-5xl tracking-wide sm:text-6xl">CATEGORÍAS</h2>
+        </div>
+        <a href="#productos" class="group inline-flex items-center gap-2 text-sm font-semibold text-neutral-500 transition hover:text-ink">
+          Ver todo el catálogo
+          <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <a href="#productos" data-cat-link="nacional" class="group relative overflow-hidden rounded-3xl bg-ink p-6 text-white transition hover:-translate-y-1">
+          <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-volt/20 blur-2xl transition group-hover:bg-volt/35"></div>
+          <p class="relative text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">01</p>
+          <h3 class="relative mt-16 font-display text-3xl tracking-wide">Nacionales</h3>
+          <p class="relative mt-1 text-sm text-white/50">Clubes chilenos</p>
+          <span class="relative mt-4 inline-flex items-center gap-1 text-sm font-semibold text-volt">
+            Ver poleras
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="#productos" data-cat-link="internacional" class="group relative overflow-hidden rounded-3xl bg-neutral-100 p-6 transition hover:-translate-y-1">
+          <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-volt/50 blur-2xl transition group-hover:bg-volt/70"></div>
+          <p class="relative text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">02</p>
+          <h3 class="relative mt-16 font-display text-3xl tracking-wide">Internacionales</h3>
+          <p class="relative mt-1 text-sm text-neutral-500">Los grandes de Europa</p>
+          <span class="relative mt-4 inline-flex items-center gap-1 text-sm font-semibold">
+            Ver poleras
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="#retro" class="group relative overflow-hidden rounded-3xl bg-neutral-100 p-6 transition hover:-translate-y-1">
+          <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-volt/50 blur-2xl transition group-hover:bg-volt/70"></div>
+          <p class="relative text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">03</p>
+          <h3 class="relative mt-16 font-display text-3xl tracking-wide">Retro</h3>
+          <p class="relative mt-1 text-sm text-neutral-500">Clásicos de otra época</p>
+          <span class="relative mt-4 inline-flex items-center gap-1 text-sm font-semibold">
+            Ver poleras
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a href="#productos" data-cat-link="ninos" class="group relative overflow-hidden rounded-3xl bg-volt p-6 transition hover:-translate-y-1">
+          <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/60 blur-2xl"></div>
+          <p class="relative text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/40">04</p>
+          <h3 class="relative mt-16 font-display text-3xl tracking-wide">Niños</h3>
+          <p class="relative mt-1 text-sm text-ink/60">Para futuras estrellas</p>
+          <span class="relative mt-4 inline-flex items-center gap-1 text-sm font-semibold">
+            Ver poleras
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Productos -->
+    <section id="productos" class="border-y border-black/5 bg-neutral-50/70">
+      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">Catálogo</p>
+            <h2 class="mt-2 font-display text-5xl tracking-wide sm:text-6xl">POLERAS DESTACADAS</h2>
+            <p class="mt-3 max-w-xl text-sm leading-relaxed text-neutral-500">
+              Las más pedidas de la temporada. Todas con tejido transpirable y escudo bordado.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Filtrar productos">
+            <button type="button" data-filter="all" class="filter-btn rounded-full bg-ink px-4 py-2 text-xs font-bold uppercase tracking-wider text-white transition">Todos</button>
+            <button type="button" data-filter="nacional" class="filter-btn rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-bold uppercase tracking-wider text-neutral-600 transition hover:border-black/30">Nacionales</button>
+            <button type="button" data-filter="internacional" class="filter-btn rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-bold uppercase tracking-wider text-neutral-600 transition hover:border-black/30">Internacionales</button>
+            <button type="button" data-filter="retro" class="filter-btn rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-bold uppercase tracking-wider text-neutral-600 transition hover:border-black/30">Retro</button>
+            <button type="button" data-filter="ninos" class="filter-btn rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-bold uppercase tracking-wider text-neutral-600 transition hover:border-black/30">Niños</button>
+          </div>
+        </div>
+
+        <div id="productGrid" class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+
+        <p id="emptyState" class="hidden py-16 text-center text-sm text-neutral-500">No hay poleras en esta categoría por el momento.</p>
+      </div>
+    </section>
+
+    <!-- Banner retro -->
+    <section id="retro" class="relative overflow-hidden bg-ink text-white">
+      <div class="hero-grid absolute inset-0 opacity-60"></div>
+      <div class="pointer-events-none absolute -left-24 top-1/2 h-[380px] w-[380px] -translate-y-1/2 rounded-full bg-volt/20 blur-[100px]"></div>
+
+      <div class="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full border border-volt/30 bg-volt/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-volt">
+            Drop retro
+          </span>
+          <h2 class="mt-6 font-display text-5xl leading-[0.95] tracking-wide sm:text-6xl">
+            EL FÚTBOL<br /><span class="text-volt">QUE NOS CRIÓ.</span>
+          </h2>
+          <p class="mt-5 max-w-md text-sm leading-relaxed text-white/60">
+            Relanzamos los clásicos de los 90 y 2000. Tela liviana, cortes fieles al original y stock por tiempo limitado.
+          </p>
+
+          <div class="mt-8 flex gap-3" id="countdown" aria-label="Cuenta regresiva del drop">
+            <div class="min-w-[72px] rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center backdrop-blur">
+              <p class="font-display text-3xl leading-none" data-cd="d">00</p>
+              <p class="mt-1 text-[10px] uppercase tracking-widest text-white/40">Días</p>
+            </div>
+            <div class="min-w-[72px] rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center backdrop-blur">
+              <p class="font-display text-3xl leading-none" data-cd="h">00</p>
+              <p class="mt-1 text-[10px] uppercase tracking-widest text-white/40">Horas</p>
+            </div>
+            <div class="min-w-[72px] rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center backdrop-blur">
+              <p class="font-display text-3xl leading-none" data-cd="m">00</p>
+              <p class="mt-1 text-[10px] uppercase tracking-widest text-white/40">Min</p>
+            </div>
+            <div class="min-w-[72px] rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center backdrop-blur">
+              <p class="font-display text-3xl leading-none text-volt" data-cd="s">00</p>
+              <p class="mt-1 text-[10px] uppercase tracking-widest text-white/40">Seg</p>
+            </div>
+          </div>
+
+          <a href="#productos" class="group mt-9 inline-flex items-center gap-2 rounded-full bg-volt px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-ink transition hover:bg-white">
+            Ver colección
+            <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm" id="retroCard1"></div>
+          <div class="mt-8 rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm" id="retroCard2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section id="beneficios" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="text-center">
+        <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">Por qué elegirnos</p>
+        <h2 class="mt-2 font-display text-5xl tracking-wide sm:text-6xl">HECHO PARA LA CANCHA</h2>
+      </div>
+
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-3xl border border-black/5 bg-white p-6 shadow-sm transition hover:shadow-lg">
+          <span class="grid h-12 w-12 place-items-center rounded-2xl bg-ink text-volt">
+            <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/>
+            </svg>
+          </span>
+          <h3 class="mt-5 text-base font-bold">Envío express</h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-500">Despachamos el mismo día en Santiago y 24/48 hrs a regiones.</p>
+        </div>
+
+        <div class="rounded-3xl border border-black/5 bg-white p-6 shadow-sm transition hover:shadow-lg">
+          <span class="grid h-12 w-12 place-items-center rounded-2xl bg-ink text-volt">
+            <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="m12 3 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9L12 3Z" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3 class="mt-5 text-base font-bold">Calidad premium</h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-500">Tejido transpirable, escudos bordados y acabados de estadio.</p>
+        </div>
+
+        <div class="rounded-3xl border border-black/5 bg-white p-6 shadow-sm transition hover:shadow-lg">
+          <span class="grid h-12 w-12 place-items-center rounded-2xl bg-ink text-volt">
+            <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3 class="mt-5 text-base font-bold">Cambios fáciles</h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-500">30 días para cambiar tu talla sin preguntas ni letra chica.</p>
+        </div>
+
+        <div class="rounded-3xl border border-black/5 bg-white p-6 shadow-sm transition hover:shadow-lg">
+          <span class="grid h-12 w-12 place-items-center rounded-2xl bg-ink text-volt">
+            <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M12 3 5 6v5c0 4.4 3 8 7 10 4-2 7-5.6 7-10V6l-7-3Z" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3 class="mt-5 text-base font-bold">Compra segura</h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-500">Pagos protegidos con Webpay, tarjetas y transferencia.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="bg-neutral-50/70 py-16 lg:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-neutral-400">Testimonios</p>
+            <h2 class="mt-2 font-display text-5xl tracking-wide sm:text-6xl">LO QUE DICEN</h2>
+          </div>
+          <div class="flex items-center gap-2 text-sm font-semibold">
+            <span class="text-lg tracking-wide text-amber-500">★★★★★</span>
+            <span class="text-neutral-500">4.9 / 5 · 2.480 reseñas</span>
+          </div>
+        </div>
+
+        <div class="mt-10 grid gap-4 md:grid-cols-3">
+          <figure class="rounded-3xl border border-black/5 bg-white p-6 shadow-sm">
+            <div class="text-sm tracking-wide text-amber-500">★★★★★</div>
+            <blockquote class="mt-3 text-sm leading-relaxed text-neutral-600">
+              “Pedí la de Colo-Colo un martes y me llegó el jueves a Concepción. La tela es liviana y el escudo está bordado de verdad.”
+            </blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              <span class="grid h-10 w-10 place-items-center rounded-full bg-ink text-sm font-bold text-volt">MF</span>
+              <div>
+                <p class="text-sm font-bold">Matías Fuentes</p>
+                <p class="text-xs text-neutral-400">Concepción</p>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="rounded-3xl border border-black/5 bg-white p-6 shadow-sm">
+            <div class="text-sm tracking-wide text-amber-500">★★★★★</div>
+            <blockquote class="mt-3 text-sm leading-relaxed text-neutral-600">
+              “Compré la retro del 98 y es idéntica a la que tenía de niño. Se nota la calidad apenas la sacas de la bolsa.”
+            </blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              <span class="grid h-10 w-10 place-items-center rounded-full bg-ink text-sm font-bold text-volt">CS</span>
+              <div>
+                <p class="text-sm font-bold">Camila Silva</p>
+                <p class="text-xs text-neutral-400">Viña del Mar</p>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="rounded-3xl border border-black/5 bg-white p-6 shadow-sm">
+            <div class="text-sm tracking-wide text-amber-500">★★★★★</div>
+            <blockquote class="mt-3 text-sm leading-relaxed text-neutral-600">
+              “Le compré la de Barcelona a mi hijo y no se la saca ni para dormir. Cambié la talla sin ningún problema.”
+            </blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              <span class="grid h-10 w-10 place-items-center rounded-full bg-ink text-sm font-bold text-volt">JR</span>
+              <div>
+                <p class="text-sm font-bold">Jorge Rojas</p>
+                <p class="text-xs text-neutral-400">Santiago</p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="contacto" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="relative overflow-hidden rounded-[2rem] bg-ink px-6 py-12 text-white sm:px-12 lg:px-16 lg:py-16">
+        <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-volt/20 blur-[90px]"></div>
+        <div class="relative grid items-center gap-8 lg:grid-cols-2">
+          <div>
+            <h2 class="font-display text-4xl leading-none tracking-wide sm:text-5xl">
+              10% OFF EN TU<br /><span class="text-volt">PRIMERA POLERA</span>
+            </h2>
+            <p class="mt-4 max-w-md text-sm leading-relaxed text-white/60">
+              Déjanos tu correo y te enviamos el cupón, además de avisos de nuevos drops y reposiciones de stock.
+            </p>
+          </div>
+
+          <form id="newsletterForm" class="w-full" novalidate>
+            <div class="flex flex-col gap-3 sm:flex-row">
+              <label for="email" class="sr-only">Correo electrónico</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="tu@correo.cl"
+                class="w-full flex-1 rounded-full border border-white/15 bg-white/5 px-5 py-3.5 text-sm text-white placeholder-white/40 outline-none transition focus:border-volt focus:bg-white/10"
+              />
+              <button type="submit" class="shrink-0 rounded-full bg-volt px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-ink transition hover:bg-white">
+                Quiero mi cupón
+              </button>
+            </div>
+            <p id="newsletterMsg" class="mt-3 hidden text-sm font-medium text-volt" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-black/5 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div class="grid gap-10 md:grid-cols-4">
+        <div class="md:col-span-1">
+          <a href="#" class="flex items-center gap-2.5" aria-label="Pasión 90, inicio">
+            <span class="grid h-10 w-10 place-items-center rounded-xl bg-ink">
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-volt" fill="currentColor" aria-hidden="true">
+                <path d="M13.5 2 4 14h6l-1.5 8L19 10h-6l.5-8Z"/>
+              </svg>
+            </span>
+            <span class="font-display text-2xl leading-none tracking-wide">PASIÓN<span class="text-neutral-400">90</span></span>
+          </a>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-neutral-500">
+            Poleras de fútbol para quienes viven el partido desde la tribuna.
+          </p>
+          <div class="mt-5 flex gap-2">
+            <a href="#" class="grid h-9 w-9 place-items-center rounded-full border border-black/10 text-neutral-600 transition hover:border-ink hover:text-ink" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+            <a href="#" class="grid h-9 w-9 place-items-center rounded-full border border-black/10 text-neutral-600 transition hover:border-ink hover:text-ink" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                <path d="M16 3c.4 2.3 1.8 3.7 4 4v3c-1.5 0-2.9-.5-4-1.3V15a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.2a2.9 2.9 0 1 0 2 2.7V3h3Z"/>
+              </svg>
+            </a>
+            <a href="#" class="grid h-9 w-9 place-items-center rounded-full border border-black/10 text-neutral-600 transition hover:border-ink hover:text-ink" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3Zm4.6 12.4c-.2.6-1.2 1.1-1.7 1.1-.5 0-1.1.2-3.5-.9-2.9-1.3-4.6-4.4-4.7-4.6-.2-.2-1-1.4-1-2.6s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4.1.6.5l.8 1.9c.1.2 0 .4-.1.6l-.4.6c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2 1.3 2.3 1.4.2.1.4 0 .5-.1l.9-1c.2-.2.3-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400">Tienda</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-neutral-600">
+            <li><a href="#productos" class="transition hover:text-ink">Poleras nacionales</a></li>
+            <li><a href="#productos" class="transition hover:text-ink">Poleras internacionales</a></li>
+            <li><a href="#retro" class="transition hover:text-ink">Colección retro</a></li>
+            <li><a href="#productos" class="transition hover:text-ink">Niños</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400">Ayuda</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-neutral-600">
+            <li><a href="#" class="transition hover:text-ink">Guía de tallas</a></li>
+            <li><a href="#beneficios" class="transition hover:text-ink">Envíos y entregas</a></li>
+            <li><a href="#beneficios" class="transition hover:text-ink">Cambios y devoluciones</a></li>
+            <li><a href="#contacto" class="transition hover:text-ink">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400">Contacto</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-neutral-600">
+            <li>hola@pasion90.cl</li>
+            <li>+56 9 1234 5678</li>
+            <li>Lun a Vie · 9:00 – 19:00</li>
+            <li>Santiago, Chile</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-black/5 pt-6 text-xs text-neutral-400 sm:flex-row">
+        <p>© <span id="year">2026</span> Pasión 90. Todos los derechos reservados.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="transition hover:text-ink">Términos</a>
+          <a href="#" class="transition hover:text-ink">Privacidad</a>
+          <span class="hidden sm:inline">Webpay · Visa · Mastercard · Transferencia</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="pointer-events-none fixed bottom-6 left-1/2 z-[60] w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 translate-y-24 rounded-2xl bg-ink px-5 py-4 text-white opacity-0 shadow-2xl transition-all duration-300">
+    <div class="flex items-center gap-3">
+      <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-volt text-ink">
+        <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
+          <path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <div class="min-w-0">
+        <p id="toastTitle" class="text-sm font-bold">Agregado al carrito</p>
+        <p id="toastDetail" class="truncate text-xs text-white/50"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ------------------------------ Datos ------------------------------ */
+    const products = [
+      {
+        id: 1, name: 'Colo-Colo Local 2026', league: 'Liga Nacional', cat: 'nacional',
+        price: 34990, old: 49990, badge: '-30%', number: '10',
+        c1: '#FFFFFF', c2: '#111113', c3: '#111113', style: 'plain', tag: 'Más vendida',
+      },
+      {
+        id: 2, name: 'U. de Chile Local 2026', league: 'Liga Nacional', cat: 'nacional',
+        price: 34990, old: 44990, badge: '-22%', number: '9',
+        c1: '#12409E', c2: '#FFFFFF', c3: '#FFFFFF', style: 'plain', tag: 'Nuevo',
+      },
+      {
+        id: 3, name: 'U. Católica Local 2026', league: 'Liga Nacional', cat: 'nacional',
+        price: 34990, old: 44990, badge: '-22%', number: '7',
+        c1: '#FFFFFF', c2: '#1C3EA2', c3: '#1C3EA2', style: 'sash', tag: '',
+      },
+      {
+        id: 4, name: 'Real Madrid Local 2026', league: 'La Liga', cat: 'internacional',
+        price: 39990, old: 54990, badge: '-27%', number: '5',
+        c1: '#FFFFFF', c2: '#D8B45A', c3: '#1E2B4F', style: 'plain', tag: 'Top ventas',
+      },
+      {
+        id: 5, name: 'FC Barcelona Local 2026', league: 'La Liga', cat: 'internacional',
+        price: 39990, old: 54990, badge: '-27%', number: '19',
+        c1: '#8E1B2E', c2: '#1D3A8A', c3: '#E8C24A', style: 'stripes', tag: '',
+      },
+      {
+        id: 6, name: 'Manchester City Local 2026', league: 'Premier League', cat: 'internacional',
+        price: 39990, old: 49990, badge: '-20%', number: '17',
+        c1: '#7CB9E8', c2: '#FFFFFF', c3: '#1B3B6F', style: 'plain', tag: '',
+      },
+      {
+        id: 7, name: 'Argentina Campeón 2022', league: 'Selecciones', cat: 'internacional',
+        price: 42990, old: 57990, badge: '-26%', number: '10',
+        c1: '#75AADB', c2: '#FFFFFF', c3: '#0F2B57', style: 'stripes', tag: 'Edición especial',
+      },
+      {
+        id: 8, name: 'Chile Retro 1998', league: 'Retro', cat: 'retro',
+        price: 37990, old: 47990, badge: '-21%', number: '11',
+        c1: '#D3122B', c2: '#FFFFFF', c3: '#FFFFFF', style: 'plain', tag: 'Retro',
+      },
+      {
+        id: 9, name: 'Barcelona Kids 2026', league: 'Niños', cat: 'ninos',
+        price: 27990, old: 34990, badge: '-20%', number: '8',
+        c1: '#8E1B2E', c2: '#1D3A8A', c3: '#E8C24A', style: 'stripes', tag: 'Niños',
+      },
+      {
+        id: 10, name: 'Colo-Colo Retro 1991', league: 'Retro', cat: 'retro',
+        price: 38990, old: 48990, badge: '-20%', number: '9',
+        c1: '#EDEDED', c2: '#111113', c3: '#111113', style: 'stripes', tag: 'Retro',
+      },
+      {
+        id: 11, name: 'La U Retro 1994', league: 'Retro', cat: 'retro',
+        price: 38990, old: 48990, badge: '-20%', number: '10',
+        c1: '#12409E', c2: '#FFFFFF', c3: '#D3122B', style: 'sash', tag: 'Retro',
+      },
+      {
+        id: 12, name: 'U. Católica Kids 2026', league: 'Niños', cat: 'ninos',
+        price: 27990, old: 34990, badge: '-20%', number: '11',
+        c1: '#FFFFFF', c2: '#1C3EA2', c3: '#1C3EA2', style: 'sash', tag: 'Niños',
+      },
+    ];
+
+    const money = new Intl.NumberFormat('es-CL', {
+      style: 'currency', currency: 'CLP', maximumFractionDigits: 0,
+    });
+
+    /* --------------------------- Polera en SVG -------------------------- */
+    const BODY_PATH = 'M68 34 L84 26 Q100 38 116 26 L132 34 L166 54 L150 84 L132 74 L132 176 Q100 184 68 176 L68 74 L50 84 L34 54 Z';
+
+    function jerseySVG(p, uid) {
+      const clipId = `jersey-clip-${uid}`;
+      let pattern = '';
+
+      if (p.style === 'stripes') {
+        pattern = [0, 1, 2, 3].map((i) =>
+          `<rect x="${74 + i * 16}" y="20" width="8" height="175" fill="${p.c2}"/>`
+        ).join('');
+      } else if (p.style === 'sash') {
+        pattern = `<rect x="-30" y="10" width="30" height="220" fill="${p.c2}" transform="rotate(22 100 100)"/>`;
+      } else if (p.style === 'halves') {
+        pattern = `<rect x="100" y="20" width="70" height="175" fill="${p.c2}"/>`;
+      }
+
+      return `
+        <svg viewBox="0 0 200 200" class="h-full w-full drop-shadow-xl" role="img" aria-label="Polera ${p.name}">
+          <defs>
+            <clipPath id="${clipId}"><path d="${BODY_PATH}"/></clipPath>
+            <linearGradient id="shine-${uid}" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.22"/>
+              <stop offset="45%" stop-color="#ffffff" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#000000" stop-opacity="0.12"/>
+            </linearGradient>
+          </defs>
+
+          <ellipse cx="100" cy="184" rx="52" ry="7" fill="#000" opacity="0.10"/>
+
+          <path d="${BODY_PATH}" fill="${p.c1}" stroke="${p.c1}" stroke-width="1.5" stroke-linejoin="round"/>
+          <g clip-path="url(#${clipId})">
+            ${pattern}
+            <rect x="0" y="0" width="200" height="200" fill="url(#shine-${uid})"/>
+          </g>
+
+          <path d="${BODY_PATH}" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="1.2" stroke-linejoin="round"/>
+
+          <!-- Cuello -->
+          <path d="M84 26 Q100 39 116 26" fill="none" stroke="${p.c3}" stroke-width="4.5" stroke-linecap="round"/>
+
+          <!-- Puños -->
+          <path d="M34 54 L50 84" stroke="${p.c3}" stroke-width="4" stroke-linecap="round"/>
+          <path d="M166 54 L150 84" stroke="${p.c3}" stroke-width="4" stroke-linecap="round"/>
+
+          <!-- Escudo -->
+          <circle cx="83" cy="70" r="7.5" fill="none" stroke="${p.c3}" stroke-width="2" opacity="0.9"/>
+          <path d="M83 65.5 l1.6 3.2 3.5.5-2.5 2.4.6 3.5-3.2-1.7-3.2 1.7.6-3.5-2.5-2.4 3.5-.5Z" fill="${p.c3}" opacity="0.9"/>
+
+          <!-- Dorsal -->
+          <text x="100" y="136" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="42" fill="${p.c3}" opacity="0.92">${p.number}</text>
+        </svg>`;
+    }
+
+    /* ---------------------------- Render cards --------------------------- */
+    const grid = document.getElementById('productGrid');
+    const emptyState = document.getElementById('emptyState');
+
+    function cardHTML(p) {
+      return `
+        <article class="group flex flex-col overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+          <div class="relative aspect-square overflow-hidden" style="background: linear-gradient(140deg, ${p.c1}2e, ${p.c2}30);">
+            ${p.badge ? `<span class="absolute left-4 top-4 z-10 rounded-full bg-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-volt">${p.badge}</span>` : ''}
+            ${p.tag ? `<span class="absolute right-4 top-4 z-10 rounded-full bg-white/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-ink backdrop-blur">${p.tag}</span>` : ''}
+            <div class="absolute inset-0 flex items-center justify-center p-8 transition duration-500 group-hover:scale-[1.04]">
+              ${jerseySVG(p, p.id)}
+            </div>
+          </div>
+
+          <div class="flex flex-1 flex-col p-5">
+            <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-400">${p.league}</p>
+            <h3 class="mt-1 text-base font-bold leading-snug">${p.name}</h3>
+
+            <div class="mt-3 flex flex-wrap items-baseline gap-2">
+              <span class="text-lg font-extrabold">${money.format(p.price)}</span>
+              <span class="text-xs text-neutral-400 line-through">${money.format(p.old)}</span>
+            </div>
+
+            <div class="mt-3 flex items-center gap-1.5">
+              ${['S', 'M', 'L', 'XL'].map((t) => `<span class="grid h-6 min-w-6 place-items-center rounded-md border border-black/10 px-1 text-[10px] font-semibold text-neutral-500">${t}</span>`).join('')}
+            </div>
+
+            <button type="button" data-add="${p.id}" class="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-ink py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-neutral-800 active:scale-[0.98]">
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z" stroke-linejoin="round"/>
+                <path d="M9 9V6a3 3 0 0 1 6 0v3" stroke-linecap="round"/>
+              </svg>
+              Agregar
+            </button>
+          </div>
+        </article>`;
+    }
+
+    function renderProducts(filter = 'all') {
+      const list = filter === 'all' ? products : products.filter((p) => p.cat === filter);
+      grid.innerHTML = list.map(cardHTML).join('');
+      emptyState.classList.toggle('hidden', list.length > 0);
+    }
+
+    /* ------------------------------ Filtros ------------------------------ */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    function setFilter(filter) {
+      filterBtns.forEach((btn) => {
+        const active = btn.dataset.filter === filter;
+        btn.classList.toggle('bg-ink', active);
+        btn.classList.toggle('text-white', active);
+        btn.classList.toggle('border', !active);
+        btn.classList.toggle('border-black/10', !active);
+        btn.classList.toggle('bg-white', !active);
+        btn.classList.toggle('text-neutral-600', !active);
+        btn.setAttribute('aria-pressed', String(active));
+      });
+      renderProducts(filter);
+    }
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+    });
+
+    document.querySelectorAll('[data-cat-link]').forEach((link) => {
+      link.addEventListener('click', () => setFilter(link.dataset.catLink));
+    });
+
+    /* ------------------------------- Carrito ----------------------------- */
+    let cartCount = 0;
+    const cartCountEl = document.getElementById('cartCount');
+    const toast = document.getElementById('toast');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastDetail = document.getElementById('toastDetail');
+    let toastTimer;
+
+    function showToast(title, detail) {
+      toastTitle.textContent = title;
+      toastDetail.textContent = detail;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 2600);
+    }
+
+    function addToCart(id) {
+      const product = products.find((p) => p.id === Number(id));
+      if (!product) return;
+
+      cartCount += 1;
+      cartCountEl.textContent = cartCount;
+      showToast('Agregado al carrito', product.name);
+    }
+
+    grid.addEventListener('click', (event) => {
+      const btn = event.target.closest('[data-add]');
+      if (btn) addToCart(btn.dataset.add);
+    });
+
+    /* -------------------------- Visuales extra --------------------------- */
+    const heroProduct = {
+      name: 'Third 2026', number: '90', c1: '#101013', c2: '#D4FF3D', c3: '#D4FF3D', style: 'stripes',
+    };
+    document.getElementById('heroJersey').innerHTML = jerseySVG(heroProduct, 'hero');
+
+    const retro1 = { name: 'Chile 1998', number: '11', c1: '#D3122B', c2: '#FFFFFF', c3: '#FFFFFF', style: 'plain' };
+    const retro2 = { name: 'Colo-Colo 1991', number: '9', c1: '#EDEDED', c2: '#111113', c3: '#111113', style: 'stripes' };
+    document.getElementById('retroCard1').innerHTML =
+      `<div class="aspect-square">${jerseySVG(retro1, 'r1')}</div>
+       <div class="mt-3 border-t border-white/10 pt-3">
+         <p class="text-[10px] uppercase tracking-widest text-white/40">Retro</p>
+         <p class="text-sm font-semibold">Chile 1998</p>
+         <p class="mt-1 font-display text-2xl tracking-wide text-volt">$37.990</p>
+       </div>`;
+    document.getElementById('retroCard2').innerHTML =
+      `<div class="aspect-square">${jerseySVG(retro2, 'r2')}</div>
+       <div class="mt-3 border-t border-white/10 pt-3">
+         <p class="text-[10px] uppercase tracking-widest text-white/40">Retro</p>
+         <p class="text-sm font-semibold">Colo-Colo 1991</p>
+         <p class="mt-1 font-display text-2xl tracking-wide text-volt">$38.990</p>
+       </div>`;
+
+    /* ----------------------------- Countdown ----------------------------- */
+    const deadline = new Date();
+    deadline.setDate(deadline.getDate() + 3);
+    deadline.setHours(23, 59, 59, 0);
+
+    const cd = {
+      d: document.querySelector('[data-cd="d"]'),
+      h: document.querySelector('[data-cd="h"]'),
+      m: document.querySelector('[data-cd="m"]'),
+      s: document.querySelector('[data-cd="s"]'),
+    };
+
+    function tick() {
+      let diff = Math.max(0, deadline - Date.now());
+      const days = Math.floor(diff / 86400000);
+      diff -= days * 86400000;
+      const hours = Math.floor(diff / 3600000);
+      diff -= hours * 3600000;
+      const minutes = Math.floor(diff / 60000);
+      diff -= minutes * 60000;
+      const seconds = Math.floor(diff / 1000);
+
+      cd.d.textContent = String(days).padStart(2, '0');
+      cd.h.textContent = String(hours).padStart(2, '0');
+      cd.m.textContent = String(minutes).padStart(2, '0');
+      cd.s.textContent = String(seconds).padStart(2, '0');
+    }
+
+    tick();
+    setInterval(tick, 1000);
+
+    /* ------------------------------ Newsletter --------------------------- */
+    const newsletterForm = document.getElementById('newsletterForm');
+    const newsletterMsg = document.getElementById('newsletterMsg');
+    const emailInput = document.getElementById('email');
+
+    newsletterForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const email = emailInput.value.trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      newsletterMsg.classList.remove('hidden');
+      if (!valid) {
+        newsletterMsg.textContent = 'Ingresa un correo válido para enviarte el cupón.';
+        newsletterMsg.classList.add('text-red-400');
+        newsletterMsg.classList.remove('text-volt');
+        emailInput.focus();
+        return;
+      }
+
+      newsletterMsg.textContent = '¡Listo! Revisa tu correo, te enviamos el cupón de 10% OFF.';
+      newsletterMsg.classList.add('text-volt');
+      newsletterMsg.classList.remove('text-red-400');
+      newsletterForm.reset();
+    });
+
+    /* ---------------------------- Menú móvil ----------------------------- */
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+      const open = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', open);
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* -------------------------- Detalles varios -------------------------- */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('shadow-sm', window.scrollY > 8);
+    }, { passive: true });
+
+    document.getElementById('cartBtn').addEventListener('click', () => {
+      const detail = cartCount === 1
+        ? 'Tienes 1 polera en el carrito.'
+        : `Tienes ${cartCount} poleras en el carrito.`;
+      showToast('Tu carrito', detail);
+    });
+
+    /* ------------------------------ Arranque ----------------------------- */
+    renderProducts('all');
+  </script>
+</body>
+</html>
